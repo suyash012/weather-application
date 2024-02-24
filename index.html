@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <h1>WEATHER </h1>
+        
+        <div class="sea">
+                <label for="search">city name:</label>
+                <input type="text" id="search" name="q" placeholder="Enter your city name">
+                 <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="hide">
+            <div id="cloud"><img src="image/weather.png" style=" height: 20vb;
+                width: 20vb;" class="weather-icon">
+                  </div>
+                  <div class="con3">
+                  <div class="temp">22°c</div>
+                  <div class="city">NEW DELHI</div>
+                </div>
+            <div class="container2">
+                <div class="humidity">
+                    <div class="img"><img src="image/humidity-icon-2048x1675-xxsge5os.png" style="height: 8vb; width: 8vb;"></div>
+                    <b><p class="text">50% 
+                        <p>humidity</p></p></b>
+                </div>
+                <div class="windspped">
+                    <div class="image2"><img src="image/439471.png" style="height: 8vb; width: 8vb;"></div>
+                    <b><p class="text2">15km/hr<p>windspeed</p>
+                    </p></b></div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html> 
