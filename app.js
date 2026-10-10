@@ -9,10 +9,10 @@ async function checkweather(city){
     var data =  await response.json();
     
 
-    document.querySelector(".city").innerHTML=data.name ;
-    document.querySelector(".temp").innerHTML=Math.round(data.main.temp)+"°c";
-    document.querySelector(".text").innerHTML=data.main.humidity+"%";
-    document.querySelector(".text2").innerHTML=data.wind.speed+"km/hr";
+    document.querySelector(".city").textContent = data.name;
+    document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°c";
+    document.querySelector(".text").textContent = data.main.humidity + "%";
+    document.querySelector(".text2").textContent = data.wind.speed + "km/hr";
 
 
 if(data.weather[0].main=="Mist"){
