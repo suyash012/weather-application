@@ -13,7 +13,7 @@
         
         <div class="sea">
                 <label for="search">city name:</label>
-                <input type="text" id="search" name="q" placeholder="Enter your city name">
+<input type="text" id="search" name="q" placeholder="Enter your city name" oninput="this.value = encodeURIComponent(this.value)">
                  <button><i class="fas fa-search"></i></button>
             </div>
             <div class="hide">
