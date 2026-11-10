@@ -1,13 +1,43 @@
-const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
-const apikey="74dda9ad8a132d1dafbaa57f9b359f33";
+// Same-origin proxy (see server.js); the OpenWeatherMap key never reaches the browser.
+const apiurl = "/api/weather?q=";
 const searchbox=document.querySelector(".sea input")
 const weatherbutton=document.querySelector(".sea button")
 const weathericon=document.querySelector(".weather-icon")
 
+function showerror(message){
+    const errorbox = document.querySelector(".error");
+    errorbox.textContent = message;
+    errorbox.style.display = "block";
+    document.querySelector(".hide").style.display = "none";
+}
+
 async function checkweather(city){
-    const response= await fetch(apiurl+city+`&appid=${apikey}`);
-    var data =  await response.json();
-    
+    document.querySelector(".error").style.display = "none";
+
+    let data;
+    try {
+        const response = await fetch(apiurl+encodeURIComponent(city));
+        // The proxy forwards the provider's status and JSON body ({cod, message} on errors).
+        data = await response.json().catch(() => null);
+        if (!response.ok) {
+            const message = data && typeof data.message === "string"
+                ? data.message
+                : "Weather lookup failed (" + response.status + ")";
+            showerror(message);
+            return;
+        }
+    } catch (e) {
+        showerror("Unable to reach the weather service. Please try again.");
+        return;
+    }
+
+    if (!data || typeof data !== "object" ||
+        !data.main || typeof data.main.temp !== "number" ||
+        !data.wind ||
+        !Array.isArray(data.weather) || !data.weather[0]) {
+        showerror("Unexpected response from the weather service.");
+        return;
+    }
 
     document.querySelector(".city").textContent = data.name;
     document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°c";
@@ -42,7 +72,9 @@ else if (data.weather[0].main=="Drizzle"){
    document.querySelector(".container").style.backdropFilter="blur(5px)"
 }
 weatherbutton.addEventListener("click", ()=>{
-    checkweather(searchbox.value)
+    checkweather(searchbox.value).catch(()=>{
+        showerror("Something went wrong. Please try again.")
+    })
 })
 
 

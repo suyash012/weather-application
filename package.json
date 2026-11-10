@@ -1,0 +1,13 @@
+{
+  "name": "weather-application",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Weather application with a server-side proxy that keeps the OpenWeatherMap API key out of the browser",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
